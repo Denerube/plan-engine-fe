@@ -1,0 +1,35 @@
+<div>
+    <ul>
+        @for (item of eventItems();  track $index) {  
+            <li>  
+            <app-event [eventItem]="item"></app-event>
+            </li>  
+        }
+            @if(hiddenForm()){
+                <li>
+                    <button #refEl (click)="showNewEventForm(refEl)" >X</button>
+                    <form #myForm="ngForm" (ngSubmit)="addNewEvent($event,myForm)">
+                        <label for="dateInit">Initial Date:</label>
+                        <input type="date" id="dateInit" name="dateInit" ngModel required  >
+                        <br/>
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" ngModel required   >
+                        <br/>
+                        <label for="date">Date:</label>
+                        <input type="date" id="date" name="date" ngModel required  >
+                        <br/>
+                        <label for="finished">Finished:</label>
+                        <input type="checkbox" id="finished" name="finished" ngModel >
+                        <br/>
+                        <label for="going">Going:</label>
+                        <input type="checkbox" id="going" name="going" ngModel >
+                        <br/>
+                        <button type="submit">Submit</button>
+                    </form>
+                </li>
+                }
+        <li>
+            <button  #refEl (click)="showNewEventForm(refEl)" [disabled]="hiddenForm()">Add new</button>
+        </li>
+    </ul>
+</div>
